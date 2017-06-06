@@ -55,7 +55,7 @@ justEat = {
             };
 
             // Create the Apple Pay session.
-            var session = new ApplePaySession(1, paymentRequest);
+            var session = new ApplePaySession(2, paymentRequest);
 
             // Setup handler for validation the merchant session.
             session.onvalidatemerchant = function (event) {
@@ -81,8 +81,10 @@ justEat = {
                     data: JSON.stringify(data),
                     headers: headers
                 }).then(function (merchantSession) {
+                    console.log("trying to vaidate")
                     // Complete validation by passing the merchant session to the Apple Pay session.
                     session.completeMerchantValidation(merchantSession);
+                    console.log("vaidated")
                 });
             };
 
@@ -105,7 +107,7 @@ justEat = {
 
             // Setup handler to receive the token when payment is authorized.
             session.onpaymentauthorized = function (event) {
-
+                console.log("trying to auth")
                 // Get the contact details for use, for example to
                 // use to create an account for the user.
                 var billingContact = event.payment.billingContact;

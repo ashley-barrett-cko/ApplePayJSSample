@@ -4,6 +4,7 @@
 namespace JustEat.ApplePayJS
 {
     using System.IO;
+    using System.Security.Cryptography.X509Certificates;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
 
@@ -17,11 +18,13 @@ namespace JustEat.ApplePayJS
                 .Build();
 
             var host = new WebHostBuilder()
-                .UseKestrel(options => options.AddServerHeader = false)
+                .UseKestrel(cfg => cfg.UseHttps("website.pfx", "Checkout17"))
+                //.UseKestrel(options => options.AddServerHeader = false)
                 .UseConfiguration(configuration)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseUrls("https://*:4430")
                 .Build();
 
             host.Run();

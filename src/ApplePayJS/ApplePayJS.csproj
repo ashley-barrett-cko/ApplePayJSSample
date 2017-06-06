@@ -21,10 +21,11 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <UserSecretsId>JustEat.ApplePayJS</UserSecretsId>
     <VersionPrefix>1.0.1</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
+    <VersionSuffix>
+    </VersionSuffix>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="wwwroot\ts\**\*.ts" />
+    <!--<Content Include="wwwroot\ts\**\*.ts" />-->
     <Content Update="appsettings.json;appsettings.*.json;web.config" CopyToPublishDirectory="PreserveNewest" />
     <Content Update="wwwroot\**\*;Views\**\*;Areas\**\Views" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="*.pfx" CopyToPublishDirectory="PreserveNewest" />
@@ -35,6 +36,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Https" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.2" />

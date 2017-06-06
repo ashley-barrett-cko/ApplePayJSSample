@@ -149,6 +149,7 @@ namespace JustEat.ApplePayJS.Controllers
         {
             var merchantCertificate = LoadMerchantCertificate();
             return GetMerchantIdentifier(merchantCertificate);
+            //return "merchant.com.dev.checkout";
         }
 
         private string GetMerchantIdentifier(X509Certificate2 certificate)
@@ -163,6 +164,7 @@ namespace JustEat.ApplePayJS.Controllers
 
             // Convert the raw ASN.1 data to a string containing the ID
             return Encoding.ASCII.GetString(extension.RawData).Substring(2);
+            //return "merchant.com.dev.checkout";
         }
     }
 }
