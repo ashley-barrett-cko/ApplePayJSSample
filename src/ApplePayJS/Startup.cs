@@ -3,11 +3,14 @@
 
 namespace JustEat.ApplePayJS
 {
+    using System.IO;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Logging;
     using Models;
 
@@ -64,7 +67,7 @@ namespace JustEat.ApplePayJS
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -72,11 +75,25 @@ namespace JustEat.ApplePayJS
             {
                 app.UseExceptionHandler("/Home/Error")
                    .UseStatusCodePages();
-            }
+            }*/
 
+            app.UseDeveloperExceptionPage();
+
+
+            // allows for the direct browsing of files within the wwwroot folder
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            // Allow static files within the .well-known directory to allow for automatic SSL renewal
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                ServeUnknownFileTypes = true, // this was needed as IIS would not serve extensionless URLs from the directory without it
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), @".well-known")),
+                RequestPath = new PathString("/.well-known")
+            });
+
+            // MVC routes
+            app.UseMvc(routes => 
             {
                 routes.MapRoute(
                     name: "default",

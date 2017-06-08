@@ -45,8 +45,8 @@ justEat = {
                 supportedNetworks: [ "amex", "masterCard", "visa" ],
                 lineItems: lineItemsForDelivery,
                 total: totalForDelivery,
-                requiredBillingContactFields: [ "email", "name", "phone", "postalAddress" ],
-                requiredShippingContactFields: [ "email", "name", "phone", "postalAddress" ],
+                //requiredBillingContactFields: [ "email", "name", "phone", "postalAddress" ],
+                //requiredShippingContactFields: [ "email", "name", "phone", "postalAddress" ],
                 shippingType: "delivery",
                 shippingMethods: [
                     { label: "Delivery", amount: delivery, identifier: "delivery", detail: "Delivery to you" },
@@ -118,7 +118,7 @@ justEat = {
                 var token = event.payment.token.paymentData;
 
                 // Apply the details from the Apple Pay sheet to the page.
-                var update = function (panel, contact) {
+                /*var update = function (panel, contact) {
 
                     if (contact.emailAddress) {
                         panel.find(".contact-email")
@@ -155,7 +155,7 @@ justEat = {
 
                 $(".card-name").text(event.payment.token.paymentMethod.displayName);
                 update($("#billing-contact"), billingContact);
-                update($("#shipping-contact"), shippingContact);
+                update($("#shipping-contact"), shippingContact);*/
 
                 // Do something with the payment to capture funds and
                 // then dismiss the Apple Pay sheet for the session with
